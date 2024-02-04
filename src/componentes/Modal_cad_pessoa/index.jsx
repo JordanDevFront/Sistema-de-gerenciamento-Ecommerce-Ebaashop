@@ -4,6 +4,7 @@ import { BsCheck2, BsX } from "react-icons/bs";
 import Swal from "sweetalert2";
 
 export function ModalPessoa() {
+  //pronto
   const [cpf, setCpf] = useState("");
   const [dataNasc, setDataNasc] = useState("");
   const [nome, setNomeCompleto] = useState("");
