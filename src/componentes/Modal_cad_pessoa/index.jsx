@@ -69,7 +69,6 @@ export function ModalPessoa() {
 
   return (
     <>
-     
       <ModalCSS>
       <div className="flex">
         <div className="titulo-modal">

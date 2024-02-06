@@ -8,7 +8,34 @@ function HomeDeslogado() {
   const [username, setUsername] = useState("");
   const [senha, setSenha] = useState("");
 
-  const login = (response, request) => {
+async function signIn() {
+  try {
+    const response = await fetch("http://localhost:8080/auth/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ username, senha }),
+    });
+
+    if (response.status === 200) {
+      const data = await response.json();
+      const token = data.token;
+      const documento = data.cpf;
+      const usuario = data.username;
+      localStorage.setItem("token", token);
+      localStorage.setItem("documento", documento);
+      localStorage.setItem("usuario", usuario);
+      window.location = "/Home"
+    } else {
+      console.error("Falha no login:", response.statusText);
+    }
+  } catch (error) {
+    console.error("Erro durante o login:", error.message);
+  }
+}
+
+  const login = async (response, request) => {
     const url = "http://localhost:8080/auth/login";
 
     const data = {
@@ -20,12 +47,21 @@ function HomeDeslogado() {
       headers: {
         "Content-Type": "application/json",
       },
+      body: JSON.stringify({ username, senha }),
     };
 
     axios
       .post(url, data, config)
-      .then(() => {
-        window.location = "/Home";
+      .then(async () => {
+        //const dados = await response.json()
+        const data = await response.json();
+      const token = data.token;
+        
+        localStorage.setItem('token', token);
+     
+
+        console.log('Login bem-sucedido!', token);
+        //window.location = "/Home";
         return;
       })
       .catch((error) => {
@@ -72,7 +108,7 @@ function HomeDeslogado() {
               name="enviar"
               id="enviar"
               onClick={() => {
-                login();
+                signIn();
               }}
             >ENTRAR</a>
             </div>
