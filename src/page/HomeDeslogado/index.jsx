@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-import axios from "axios";
-import Swal from "sweetalert2"
 import { Col, Container, Input, Modal, Image, Formulario } from "./style";
 import user from "../../imagens/user.jpg";
 
@@ -21,10 +19,10 @@ async function signIn() {
     if (response.status === 200) {
       const data = await response.json();
       const token = data.token;
-      const documento = data.cpf;
+      //const documento = data.cpf;
       const usuario = data.username;
       localStorage.setItem("token", token);
-      localStorage.setItem("documento", documento);
+      //localStorage.setItem("documento", documento);
       localStorage.setItem("usuario", usuario);
       window.location = "/Home"
     } else {
@@ -34,44 +32,6 @@ async function signIn() {
     console.error("Erro durante o login:", error.message);
   }
 }
-
-  const login = async (response, request) => {
-    const url = "http://localhost:8080/auth/login";
-
-    const data = {
-      username: username,
-      senha: senha,
-    };
-
-    const config = {
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ username, senha }),
-    };
-
-    axios
-      .post(url, data, config)
-      .then(async () => {
-        //const dados = await response.json()
-        const data = await response.json();
-      const token = data.token;
-        
-        localStorage.setItem('token', token);
-     
-
-        console.log('Login bem-sucedido!', token);
-        //window.location = "/Home";
-        return;
-      })
-      .catch((error) => {
-        Swal.fire({
-          title: "Atenção!",
-          text: error,
-          icon: "warning",
-        });
-      });
-  };
 
   return (
     <>

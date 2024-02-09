@@ -13,13 +13,12 @@ margin-top: 20px;
 
 export const Modal = styled.div`
     width: 98.5%;
-    border: 1px solid #b9b9b9;
     height: 50px;
     border-radius: 4px;
     margin: 10px;
     display:flex;
     border-left: 4px solid #cb1111;
-    background: #f7f7f7;
+    background: #f9f7f7;
     box-shadow: rgba(17, 17, 26, 0.05) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 0px 8px;
 `
 
@@ -27,7 +26,6 @@ export const Col = styled.div`
 width: 96%;
     height: 38px;
     margin: 5px;
-    border: 1px solid #b9b9b9;
     
 
     span{

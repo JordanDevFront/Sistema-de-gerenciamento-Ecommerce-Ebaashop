@@ -6,7 +6,7 @@ import { FiPhone, FiAtSign, FiUser, FiCalendar } from "react-icons/fi";
 import { Col, Container, Modal, ModalEndereço } from "./style";
 import Localizacao from "../../imagens/localizacao.jpg"
 
-function Cadastro() {
+function Cadastro_Usuario() {
   const [Dados, setDados] = useState([]);
   const [cpf, setCpf] = useState("");
   const [nome_completo, setNomeCompleto] = useState("");
@@ -23,28 +23,6 @@ function Cadastro() {
   useEffect(()=>{
     fetchData();
   },[])
-
-  const getUser = async () => {
-    try {
-      const response = await axios.get('http://localhost:8080/registrations/');
-      console.log(response);
-      setDados(response.data)
-      setCpf(response.data.cpf);
-      setNomeCompleto(response.data.nome_completo);
-      setData_nasc(response.data.data_nasc);
-      setCelular(response.data.celular);
-      setEmail(response.data.email);
-      setCep(response.data.cep);
-      setEndereco(response.data.endereco);
-      setNumero(response.data.numero)
-      setBairro(response.data.bairro)
-      setCidade(response.data.cidade);
-      setUf(response.data.uf)
-
-    } catch (error) {
-      console.error(error);
-    }
-  }
 
   const fetchData = async () => {
     try {
@@ -78,7 +56,7 @@ function Cadastro() {
       if (response.status === 401) {
         console.error('Autenticação falhada. Redirecionando para a página de login.');
         Swal.fire({
-          title: "Seu token inspirou!",
+          title: "Seu token expirou!",
           text: "Vamos te redirecionar para tela de login.",
           icon: "error",
         });
@@ -100,7 +78,7 @@ function Cadastro() {
       <Container>
 
         <div className="titulo">
-          <label>Cadastro de clientes</label>
+          <label>Cadastro de usuários</label>
         </div>
         {
           Dados.map((item, index) => {
@@ -131,4 +109,4 @@ function Cadastro() {
   );
 }
 
-export default Cadastro;
+export default Cadastro_Usuario;

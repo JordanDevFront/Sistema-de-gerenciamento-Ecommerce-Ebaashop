@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 export const ModalCSS = styled.div`
 width: 80%;
-height: auto;
+height: 600px;
 box-shadow: rgb(99 99 99 / 62%) 0px 2px 8px 0px;
 margin: 17px 20px;
 border-radius: 4px;
@@ -38,16 +38,14 @@ border-radius: 4px;
     cursor: pointer;
 }
 `;
-
 export const Formulario = styled.div`
   position: relative;
   top: 15px;
   margin-left: 20px;
 `;
-
 export const Cols = styled.div`
 display:flex;
-`
+`;
 export const Col = styled.div`
 border-left: 4px solid #cb1111;
     padding: 5px;
@@ -88,21 +86,20 @@ border-left: 4px solid #cb1111;
     .icon-error{
         background: red;
     }
-`
+`;
 export const Input = styled.input`
 width: 93%;
 padding:5px;
 border: none;
 background: transparent;
 outline: 0;
-`
-
+`;
 export const Btn = styled.div`
 width:65%;
 
 .float{
     display:flex;
-    width:37%;
+    width:36%;
     float:right;
     margin-top:10px;
 
@@ -153,4 +150,4 @@ margin:10px;
   .button-salvar:focus, .button-cancelar:focus {
     box-shadow: rgba(50, 50, 93, .1) 0 0 0 1px inset, rgba(50, 50, 93, .2) 0 6px 15px 0, rgba(0, 0, 0, .1) 0 2px 2px 0, rgba(50, 151, 211, .3) 0 0 0 4px;
   }
-`
+`;
