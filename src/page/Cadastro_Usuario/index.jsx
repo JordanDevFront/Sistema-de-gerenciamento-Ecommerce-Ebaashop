@@ -4,6 +4,7 @@ import Swal from "sweetalert2"
 import { BiChevronDown } from "react-icons/bi";
 import { FiPhone, FiAtSign, FiUser, FiCalendar } from "react-icons/fi";
 import { Col, Container, Modal, ModalEndereço } from "./style";
+import {HeaderLogado} from "../../componentes/Header"
 import Localizacao from "../../imagens/localizacao.jpg"
 
 function Cadastro_Usuario() {
@@ -74,7 +75,7 @@ function Cadastro_Usuario() {
 
   return (
    <>
-      <>
+   <HeaderLogado/>
       <Container>
 
         <div className="titulo">
@@ -103,7 +104,7 @@ function Cadastro_Usuario() {
 
         }
       </Container>
-   </>
+
    </>
 
   );

@@ -1,8 +1,9 @@
 import React, {useState} from "react";
 import axios from "axios";
 import Swal from "sweetalert2";
-import { ModalCSS, Formulario, Cols, Col, Input, Btn } from "../styleGlobal"
+import { ModalCSS, Formulario, Cols, Col, Input, BtnProd } from "../styleGlobal"
 import { BsCheck2, BsX } from "react-icons/bs";
+import { CiViewTable } from "react-icons/ci";
 
 export function ModalProduto() {
     //pronto
@@ -75,6 +76,7 @@ export function ModalProduto() {
               <span>Cadastro de Produtos</span>
             </div>
             <div className="barra-fechar">
+              <a href="/CadastroProduto"><label><CiViewTable className="icon-table"/></label></a>
               <span>X</span>
             </div>
           </div>
@@ -351,7 +353,7 @@ export function ModalProduto() {
             </Cols>
   
             <Cols>
-              <Btn>
+              <BtnProd>
                 <div className="float">
                   <div className="cancel">
                     <button class="button-cancelar bg-color-cancel" role="button">
@@ -369,7 +371,7 @@ export function ModalProduto() {
                     </button>
                   </div>
                 </div>
-              </Btn>
+              </BtnProd>
             </Cols>
           </Formulario>
         </ModalCSS>

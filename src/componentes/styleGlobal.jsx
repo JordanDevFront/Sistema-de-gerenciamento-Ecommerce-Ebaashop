@@ -22,20 +22,37 @@ border-radius: 4px;
 }
 
 .barra-fechar{
-    width: 80%;
-    text-align: right;
+    width: 79%;
+    margin-top:-15px;
+
+    .icon-table{
+        font-size:28px;
+        position:relative;
+        top:1px;
+    }
 }
 
 .barra-fechar span{
-    text-align: right;
     padding: 10px;
     background: #999898;
     border-radius: 4px;
     margin-left: 20px;
-    position: relative;
-    top: -5px;
     color: #fff;
     cursor: pointer;
+    float: right;
+}
+
+.barra-fechar label{
+    padding: 3px 10px;
+    background: #11cba9;
+    border-radius: 4px;
+    margin-left: 20px;
+    float: left;
+    color: #fff;
+    cursor: pointer;
+    position: relative;
+    top: 0px;
+
 }
 `;
 export const Formulario = styled.div`
@@ -47,7 +64,7 @@ export const Cols = styled.div`
 display:flex;
 `;
 export const Col = styled.div`
-border-left: 4px solid #cb1111;
+border-left: 4px solid #8f8a8a;
     padding: 5px;
     margin: 10px;
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
@@ -100,6 +117,64 @@ width:65%;
 .float{
     display:flex;
     width:36%;
+    float:right;
+    margin-top:10px;
+
+}
+
+.cancel, .salvar{
+margin:10px;
+}
+
+.bg-color-bule{
+    background-color: #405cf5;
+}
+.bg-color-cancel{
+    background-color: #b3b3b3;
+}
+.button-salvar, .button-cancelar {
+    appearance: button;
+    backface-visibility: hidden;
+    border-radius: 6px;
+    border-width: 0;
+    box-shadow: rgba(50, 50, 93, .1) 0 0 0 1px inset,rgba(50, 50, 93, .1) 0 2px 5px 0,rgba(0, 0, 0, .07) 0 1px 1px 0;
+    box-sizing: border-box;
+    color: #fff;
+    cursor: pointer;
+    font-family: -apple-system,system-ui,"Segoe UI",Roboto,"Helvetica Neue",Ubuntu,sans-serif;
+    font-size: 100%;
+    height: 44px;
+    line-height: 1.15;
+    margin: 12px 0 0;
+    outline: none;
+    overflow: hidden;
+    padding: 0 25px;
+    position: relative;
+    text-align: center;
+    text-transform: none;
+    transform: translateZ(0);
+    transition: all .2s,box-shadow .08s ease-in;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    width: 100%;
+  }
+  
+  .button-salvar:disabled, .button-cancelar:disabled {
+    cursor: default;
+  }
+  
+  .button-salvar:focus, .button-cancelar:focus {
+    box-shadow: rgba(50, 50, 93, .1) 0 0 0 1px inset, rgba(50, 50, 93, .2) 0 6px 15px 0, rgba(0, 0, 0, .1) 0 2px 2px 0, rgba(50, 151, 211, .3) 0 0 0 4px;
+  }
+`;
+
+export const BtnProd = styled.div`
+width:100%;
+
+.float{
+    display:flex;
+    width:25%;
     float:right;
     margin-top:10px;
 
