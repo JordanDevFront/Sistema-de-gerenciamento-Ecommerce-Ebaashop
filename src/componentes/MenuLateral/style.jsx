@@ -6,7 +6,7 @@ display:flex;
 margin-top:5px;
 `
 export const MenuCSS = styled.div`
-  width: 20%;
+  width: 280px;
   height: 100vh;
   background: #cb1111;
   box-shadow: rgba(33, 35, 38, 0.1) 0px 10px 10px -10px;

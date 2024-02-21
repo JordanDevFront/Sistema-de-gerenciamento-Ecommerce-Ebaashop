@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from "react";
 import Logotipo from "../../imagens/logotipo.png"
-import { HeaderCSS } from "./style";
+import { HeaderCSS } from "../styleGlobal";
 import { CiUser } from "react-icons/ci";
 
 export function HeaderLogado() {
@@ -14,12 +14,23 @@ export function HeaderLogado() {
 
 
   return (
-      <HeaderCSS>
-        <div className="flex">
-        <div className="logo"><a href="/Home"> <img src={Logotipo} className="img"/></a></div>
-          <div className="user"><span>Olá, <strong>{usuario}</strong>! <label className="icon-user"><CiUser/></label></span></div>
+    <HeaderCSS>
+      <div className="flex">
+        <div className="logo">
+          <a href="/Home">
+            {" "}
+            <img src={Logotipo} className="img" />
+          </a>
         </div>
-      </HeaderCSS>
-
+        <div className="user">
+          <span>
+            Olá, <strong>{usuario}</strong>!{" "}
+            <label className="icon-user">
+              <CiUser />
+            </label>
+          </span>
+        </div>
+      </div>
+    </HeaderCSS>
   );
 }

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Col, Container, Input, Modal, Image, Formulario } from "./style";
 import user from "../../imagens/user.jpg";
+import { HeaderDeslogada } from "../../componentes/HeaderDeslogado";
 
 function HomeDeslogado() {
   const [username, setUsername] = useState("");
@@ -35,6 +36,7 @@ async function signIn() {
 
   return (
     <>
+    <HeaderDeslogada/>
       <Container>
         <Modal>
           <Image>

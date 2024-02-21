@@ -168,7 +168,6 @@ margin:10px;
     box-shadow: rgba(50, 50, 93, .1) 0 0 0 1px inset, rgba(50, 50, 93, .2) 0 6px 15px 0, rgba(0, 0, 0, .1) 0 2px 2px 0, rgba(50, 151, 211, .3) 0 0 0 4px;
   }
 `;
-
 export const BtnProd = styled.div`
 width:100%;
 
@@ -226,3 +225,116 @@ margin:10px;
     box-shadow: rgba(50, 50, 93, .1) 0 0 0 1px inset, rgba(50, 50, 93, .2) 0 6px 15px 0, rgba(0, 0, 0, .1) 0 2px 2px 0, rgba(50, 151, 211, .3) 0 0 0 4px;
   }
 `;
+export const HeaderCSS = styled.div`
+  width: 100%;
+  height: 80px;
+  background: #fff;
+  box-shadow: rgba(33, 35, 38, 0.1) 0px 10px 10px -10px;
+
+  .img{
+    width:150px;
+  }
+
+  .flex{
+    display:flex;
+    width:100%;
+  }
+
+  .user{
+    width: 90%;
+    text-align: right;
+
+    span{
+      position: relative;
+      top: 30px;
+      right: 45px;
+      color: #cb1111;
+    }
+  }
+
+  .icon-user{
+    font-size: 26px;
+    position: relative;
+    top: 5px;
+  }
+`;
+export const ModalCSSCategoria = styled.div`
+width: 30%;
+    height: 600px;
+    box-shadow: rgb(99 99 99 / 62%) 0px 2px 8px 0px;
+    margin: 17px 20px;
+    border-radius: 4px;
+    padding: 10px;
+
+
+    .titulo-modal span{
+      padding: 10px;
+      background:#cb1111;
+      border-radius: 4px;
+      margin-left: 20px;
+      position: relative;
+      top: -5px;
+      color: #fff;
+  }
+`
+export const Table = styled.div`
+padding: 20px;
+position: relative;
+top: 20px;
+
+
+background: #ffffff;
+  border-radius: 6px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+`
+export const Coluna = styled.div`
+display:flex;
+  background: #ffffff;
+  padding: 10px;
+  height: 48px; /*48*/
+  border-radius: 6px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  border-left: 4px solid #11cba9;
+  margin: 10px;
+  cursor: pointer;
+  transition: height 1s;
+
+  .desc{
+    width:235px;
+
+    span{
+      position: relative;
+      top: 14px;
+    }
+  }
+
+  .btn-excl, .btn-alt{
+    width: 25px;
+    font-size: 24px;
+    text-align:center;
+  }
+
+  .icon-alt{
+    font-size: 24px;
+    position: relative;
+    top: 7px;
+    background: #f3d84d;
+    padding: 5px;
+    border-radius: 4px;
+    color: #fff;
+    margin-left: 15px;
+  }
+
+  .icon-exc{
+    font-size: 24px;
+    position: relative;
+    top: 7px;
+    background: #ff6464;
+    padding: 5px;
+    border-radius: 4px;
+    color: #fff;
+  }
+  
+  .desc, .btn-excl, .btn-alt{
+  }
+`

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Swal from "sweetalert2"
-import { Container, ColVertical, ColsVert, ColIteim , Display, Image, Title, Coluna, Colunas, Info, Col, Preco, Descricao, Btns, ColBtn} from "./style";
+import { Container, ColVertical, ColsVert, ColIteim , Display, Image, Title, Info, Col, Preco, Descricao, Btns, ColBtn} from "./style";
+import { Coluna, Colunas } from "../../page/styleGlobalPage"
 import Prod from "../../imagens/prod.jpg"
 import { HeaderLogado } from "../../componentes/Header";
 
@@ -21,8 +22,14 @@ function CadastroProduto() {
     const [data, setDados] = useState([]);
 
 
+    const [loading, setLoading] = useState(true);
+
+
     useEffect(() => {
-      fetchData();
+      setTimeout(() => {
+        fetchData();
+      setLoading(false)
+      }, 5000)
 
     }, []);
 
@@ -77,7 +84,7 @@ function CadastroProduto() {
 
   return (
     <>
-    <HeaderLogado/>
+      <HeaderLogado />
       <Container>
         <Colunas>
           <Display>
@@ -96,83 +103,104 @@ function CadastroProduto() {
           </Display>
         </Colunas>
 
-        {data.map((item) => {
-         return(
-          <ColVertical>
-          <Colunas>
-            <ColsVert>
-              <ColIteim>
-                <label>{item.nome_prod}</label>
-              </ColIteim>
-              <ColIteim>
-                <label className="clas">{item.classificacao}</label>
-              </ColIteim>
-              <ColIteim>
-                <span>{item.frete === 1 ? "Frete incluso" : "Frete não incluso"}</span>
-              </ColIteim>
-              <ColIteim>
-                <label className="cat">{item.id_categoria === 1 ? "Cozinha" : "Foda-se"}</label>
-              </ColIteim>
-            </ColsVert>
-          </Colunas>
-
-          <div id="info">
-            <ColsVert>
-              <Image>
-                <img src={Prod} />
-              </Image>
-              <Info>
-                <Col>
-                  <Title>
-                    <span>Desconto</span>
-                  </Title>
-                  <br />
-                  <span>{item.desconto}</span>
-                </Col>
-                <Col>
-                  <Title>
-                    <span>Preço do desconto</span>
-                  </Title>
-                  <br /> <span>{item.preco_desconto}</span>
-                </Col>
-                <Col>
-                  <Title>
-                    <span>Qnt parcelas</span>
-                  </Title>
-                  <br />
-                  <span>{item.qnt_parcelas}</span>
-                </Col>
-                <Col>
-                  <Title>
-                    <span>Preço das parcelas</span>
-                  </Title>
-                  <br />
-                  <span>R$ {item.valor_parcela}</span>
-                </Col>
-                <Col>
-                  <Title>
-                    <span>Valor do frete</span>
-                  </Title>
-                  <br />
-                  <span>R$ {item.valor_frete}</span>
-                </Col>
-              </Info>
-            </ColsVert>
-
-            <Descricao><strong>Descrição: </strong>{item.descricao}</Descricao>
-            <br />
-            <Preco>R$ {item.preco}</Preco>
-            <Btns>
-              <ColBtn>
-                <button>Novo</button>
-                <button>Editar</button>
-                <button>Excluir</button>
-              </ColBtn>
-            </Btns>
+        {loading ? (
+          <div className="loading">
+            <p>Carregando...</p>
           </div>
-        </ColVertical>
-         )
-        })}
+        ) : (
+          <>
+            {data === null || data.length === 0 ? (
+              <p className="nenhum-regis">Nenhum registro</p>
+            ) : (
+              data.map((item, index) => {
+                return (
+                  <ColVertical key={index}>
+                    <Colunas>
+                      <ColsVert>
+                        <ColIteim>
+                          <label>{item.nome_prod}</label>
+                        </ColIteim>
+                        <ColIteim>
+                          <label className="clas">{item.classificacao}</label>
+                        </ColIteim>
+                        <ColIteim>
+                          <span>
+                            {item.frete === 1
+                              ? "Frete incluso"
+                              : "Frete não incluso"}
+                          </span>
+                        </ColIteim>
+                        <ColIteim>
+                          <label className="cat">
+                            {item.id_categoria === 1 ? "Cozinha" : "Foda-se"}
+                          </label>
+                        </ColIteim>
+                      </ColsVert>
+                    </Colunas>
+
+                    <div id="info">
+                      <ColsVert>
+                        <Image>
+                          <img src={Prod} alt="Produto" />
+                        </Image>
+                        <Info>
+                          <Col>
+                            <Title>
+                              <span>Desconto</span>
+                            </Title>
+                            <br />
+                            <span>{item.desconto}</span>
+                          </Col>
+                          <Col>
+                            <Title>
+                              <span>Preço do desconto</span>
+                            </Title>
+                            <br /> <span>{item.preco_desconto}</span>
+                          </Col>
+                          <Col>
+                            <Title>
+                              <span>Qnt parcelas</span>
+                            </Title>
+                            <br />
+                            <span>{item.qnt_parcelas}</span>
+                          </Col>
+                          <Col>
+                            <Title>
+                              <span>Preço das parcelas</span>
+                            </Title>
+                            <br />
+                            <span>R$ {item.valor_parcela}</span>
+                          </Col>
+                          <Col>
+                            <Title>
+                              <span>Valor do frete</span>
+                            </Title>
+                            <br />
+                            <span>R$ {item.valor_frete}</span>
+                          </Col>
+                        </Info>
+                      </ColsVert>
+
+                      <Descricao>
+                        <strong>Descrição: </strong>
+                        {item.descricao}
+                      </Descricao>
+                      <br />
+                      <Preco>R$ {item.preco}</Preco>
+                      <Btns>
+                        <ColBtn>
+                          <button>Novo</button>
+                          <button>Editar</button>
+                          <button>Excluir</button>
+                        </ColBtn>
+                      </Btns>
+                    </div>
+                  </ColVertical>
+                );
+              })
+            )}
+          </>
+        )}
       </Container>
     </>
   );

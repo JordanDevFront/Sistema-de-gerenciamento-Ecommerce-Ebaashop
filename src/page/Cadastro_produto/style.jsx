@@ -9,6 +9,17 @@ export const Container = styled.div`
     font-size: 24px;
     padding: 10px;
   }
+
+  .loading, .nenhum-regis{
+    text-align:center;
+    width:92%;
+    margin: 0 auto;
+  }
+
+  .nenhum-regis{
+    background: lightgrey;
+    padding: 10px;
+  }
 `;
 
 export const Display = styled.div`
@@ -16,26 +27,6 @@ display: flex;
 width: 95%;
     margin: 0 auto;
 `;
-
-export const Coluna = styled.div`
-padding: 20px;
-text-align: center;
-margin: 0 auto;
-width: 100%;
-
-
-span{
-    border-radius: 18px;
-    color: #2c2416;
-    font-size: 14px;
-    font-weight: 700;
-}
-`
-
-export const Colunas = styled.div`
-width:100%;
-padding:3px;
-`
 
 export const ColVertical = styled.div`
   width: 95%;
