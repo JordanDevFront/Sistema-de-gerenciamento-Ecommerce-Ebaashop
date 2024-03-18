@@ -4,6 +4,7 @@ import { Container, ColVertical, ColsVert, ColIteim , Display, Image, Title, Inf
 import { Coluna, Colunas } from "../../page/styleGlobalPage"
 import Prod from "../../imagens/prod.jpg"
 import { HeaderLogado } from "../../componentes/Header";
+import axios from "axios";
 
 
 function CadastroProduto() {
@@ -28,6 +29,7 @@ function CadastroProduto() {
     useEffect(() => {
       setTimeout(() => {
         fetchData();
+        teste();
       setLoading(false)
       }, 5000)
 
@@ -81,6 +83,42 @@ function CadastroProduto() {
         console.error('Erro:', error.message);
       }
     };
+
+    const teste = async () => {
+      try {
+        const response = await fetch('http://localhost:8080/list/pending/orders/', {
+          method: 'GET',
+          headers: {
+            "Content-Type": "application/json",
+            'Authorization': `Bearer ${localStorage.getItem('token')}`
+          },
+        });
+  
+        const data = await response.json();
+  
+        if(response.status === 200){
+          console.log("Dados do pedido:", data);
+        }
+  
+        if (response.status === 401) {
+          console.error('Autenticação falhada. Redirecionando para a página de login.');
+          Swal.fire({
+            title: "Seu token expirou!",
+            text: "Vamos te redirecionar para tela de login.",
+            icon: "error",
+          });
+          setTimeout(() => {
+            window.location = "/";
+          }, 5000);        
+          
+        } else if (!response.ok) {
+          throw new Error('Erro ao obter os dados');
+        }
+      } catch (error) {
+        console.error('Erro:', error.message);
+      }
+    };
+
 
   return (
     <>
