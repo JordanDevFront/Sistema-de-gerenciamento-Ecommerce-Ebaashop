@@ -10,7 +10,7 @@ function Home() {
    <HeaderLogado/>
    <Display>
    <MenuLateral/>
-   <ModalDasBoard/>
+   {/**<ModalDasBoard/> */}
    </Display>
    </>
 

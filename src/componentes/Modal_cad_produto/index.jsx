@@ -11,33 +11,39 @@ export function ModalProduto() {
     const [descricao, setDescricao] = useState("");
     const [classificacao, setClassificacao] = useState("");
     const [id_categoria, setId_categoria] = useState(null);
-    const [preco, setPreco] = useState("");
+    const [preco, setPreco] = useState(null);
     const [qnt, setQnt] = useState(null);
-    const [desconto, setDesconto] = useState("");
-    const [preco_desconto, setPreco_desconto] = useState("");
+    const [qnt_em_estoque, setQnt_em_estoque] = useState(null);
+    const [peso, setPeso] = useState(null);
+    const [desconto, setDesconto] = useState(null);
+    const [preco_desconto, setPreco_desconto] = useState(null);
     const [qnt_parcelas, setQnt_parcelas] = useState(null);
-    const [valor_parcela, setValor_parcela] = useState("");
+    const [juros_parcela, setJuros_parcela] = useState(null);
+    const [valor_parcela, setValor_parcela] = useState(null);
     const [frete, setFrete] = useState(null);
-    const [valor_frete, setValor_frete] = useState("");
+    const [valor_frete, setValor_frete] = useState(null);
 
     async function Enviar() {
       try {
+        const data = {
+          nome_prod,
+          descricao,
+          classificacao,
+          id_categoria,
+          preco,
+          qnt,
+          qnt_em_estoque,
+          peso,
+          desconto,
+          preco_desconto,
+          qnt_parcelas,
+          juros_parcela,
+          valor_parcela,
+          frete,
+          valor_frete,
+        };
         const response = await axios.post(
-          "http://localhost:8080/resgister/product/",
-          {
-            nome_prod,
-            descricao,
-            classificacao,
-            id_categoria,
-            preco,
-            qnt,
-            desconto,
-            preco_desconto,
-            qnt_parcelas,
-            valor_parcela,
-            frete,
-            valor_frete,
-          },
+          "http://localhost:8080/registrar/novo/produto/", data,
           {
             headers: {
               "Content-Type": "application/json",
@@ -52,7 +58,7 @@ export function ModalProduto() {
           Swal.fire({
             icon: "success",
             title: "Dados Enviado!",
-            text: "response.data.message",
+            text: response.data.message,
           }).then(() => {
             window.location = "/CadastroProduto";
           });
@@ -195,7 +201,7 @@ export function ModalProduto() {
               </Col>
   
               <Col>
-                <label>Quantidade</label>
+                <label>Quantidade por unidade</label>
                 <Input
                   type="text"
                   value={qnt}
@@ -351,7 +357,73 @@ export function ModalProduto() {
                 </div>
               </Col>
             </Cols>
+
+            <Cols>
+              <Col>
+                <label>Juros da parcela</label>
+                <Input
+                  type="text"
+                  value={juros_parcela}
+                  onChange={(e) => {
+                    setJuros_parcela(e.target.value);
+                  }}
+                />{" "}
+                <div className="flex-icon">
+                  <div
+                    id="icon-string"
+                    className={
+                      juros_parcela === "" || juros_parcela === null ? "icon-error" : "icon-nick"
+                    }
+                  >
+                    {juros_parcela === "" ? <BsX /> : <BsCheck2 />}
+                  </div>
+                </div>
+              </Col>
   
+              <Col>
+                <label>Quantidade por estoque</label>
+                <Input
+                  type="text"
+                  value={qnt_em_estoque}
+                  onChange={(e) => {
+                    setQnt_em_estoque(e.target.value);
+                  }}
+                />{" "}
+                <div className="flex-icon">
+                  <div
+                    id="icon-string"
+                    className={
+                      qnt_em_estoque === "" || qnt_em_estoque === null ? "icon-error" : "icon-nick"
+                    }
+                  >
+                    {qnt_em_estoque === "" ? <BsX /> : <BsCheck2 />}
+                  </div>
+                </div>
+              </Col>
+
+              <Col>
+                <label>Peso</label>
+                <Input
+                  type="text"
+                  value={peso}
+                  onChange={(e) => {
+                    setPeso(e.target.value);
+                  }}
+                />{" "}
+                <div className="flex-icon">
+                  <div
+                    id="icon-string"
+                    className={
+                      peso === "" || peso === null ? "icon-error" : "icon-nick"
+                    }
+                  >
+                    {peso === "" ? <BsX /> : <BsCheck2 />}
+                  </div>
+                </div>
+              </Col>
+            </Cols>
+
+            {/**Botões */}
             <Cols>
               <BtnProd>
                 <div className="float">

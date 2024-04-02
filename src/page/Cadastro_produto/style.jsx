@@ -9,17 +9,6 @@ export const Container = styled.div`
     font-size: 24px;
     padding: 10px;
   }
-
-  .loading, .nenhum-regis{
-    text-align:center;
-    width:92%;
-    margin: 0 auto;
-  }
-
-  .nenhum-regis{
-    background: lightgrey;
-    padding: 10px;
-  }
 `;
 
 export const Display = styled.div`
@@ -30,12 +19,12 @@ width: 95%;
 
 export const ColVertical = styled.div`
   width: 95%;
-  background: #ffffff;
+  background: #f7f5f5;
   padding: 20px;
   height: 48px; /*48*/
   border-radius: 6px;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-  border-left: 4px solid #11cba9;
+  border-left: 4px solid #c1c1c1;
   margin: 10px;
   cursor: pointer;
   transition: height 1s;
@@ -51,7 +40,6 @@ export const ColVertical = styled.div`
 
   &:hover{
     background: #fbfbfb;
-    box-shadow: rgb(66 197 180 / 34%) 0px 2px 8px 0px;
     height: 350px;
   }
 
@@ -65,25 +53,30 @@ display: flex;
 `;
 
 export const ColIteim = styled.div`
-padding: 11px;
-width: 100%;
-text-align: center;
+  width: 100%;
+  text-align: center;
 
-  span {
-    background: #11cba9;
+  .formato {
     padding: 6px 20px;
     border-radius: 8px;
     color: #fff;
   }
-  label{
+
+  #bgVerde {
+    background: #11cb54;
+  }
+  #bgVermelho {
+    background: red;
+  }
+  label {
     border-radius: 8px;
     color: #fff;
-    color:black;
+    color: black;
   }
 
-  .cat{
-    background: #bfbb2f;
-    color:white;
+  .cat {
+    background: #b3b3b3;
+    color: white;
     padding: 6px 20px;
   }
 
@@ -91,15 +84,43 @@ text-align: center;
     font-size: 24px;
   }
 
-  .fre{
-    position:relative;
-    left:52px;
+  .fre {
+    position: relative;
+    left: 52px;
   }
-  .clas{
+  .clas {
     padding: 5px 30px;
-    background: #42e75f;
+    background: #4224de;
     color: #fff;
   }
+`;
+
+export const ComponenteLoading = styled.div`
+  text-align: center;
+  width: 92%;
+  margin: 0 auto;
+`;
+
+export const Loading = styled.p``;
+
+export const ComponenteMensagem = styled.p`
+  text-align: center;
+  width: 92%;
+  margin: 0 auto;
+  background: lightgrey;
+  padding: 10px;
+`;
+
+export const ColDetalhes = styled.div`
+width: 10%;
+text-align: center;
+
+.detalhes{
+  font-size: 24px;
+  position: relative;
+  top: -4px;
+}
+
 `;
 
 export const Image = styled.div`

@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import Swal from "sweetalert2"
-import { Container, ColVertical, ColsVert, ColIteim , Display, Image, Title, Info, Col, Preco, Descricao, Btns, ColBtn} from "./style";
+import { Container, ColVertical, ColsVert, ColIteim , ComponenteLoading, Loading, ComponenteMensagem, ColDetalhes, Image, Title, Info, Col, Preco, Descricao, Btns, ColBtn} from "./style";
 import { Coluna, Colunas } from "../../page/styleGlobalPage"
 import Prod from "../../imagens/prod.jpg"
 import { HeaderLogado } from "../../componentes/Header";
 import axios from "axios";
+
+import { CiImport } from "react-icons/ci";
 
 
 function CadastroProduto() {
@@ -21,8 +23,6 @@ function CadastroProduto() {
     const [frete, setFrete] = useState(null);//
     const [valor_frete, setValor_frete] = useState("");//
     const [data, setDados] = useState([]);
-
-
     const [loading, setLoading] = useState(true);
 
 
@@ -37,7 +37,7 @@ function CadastroProduto() {
 
     const fetchData = async () => {
       try {
-        const response = await fetch('http://localhost:8080/products/', {
+        const response = await fetch('http://localhost:8080/lista/produtos', {
           method: 'GET',
           headers: {
             "Content-Type": "application/json",
@@ -50,7 +50,6 @@ function CadastroProduto() {
         if(response.status === 200){
           
           setDados(data);
-          console.log("Dados de produtos:", data);
           setNome_prod(data.nome_prod);
           setDescricao(data.descricao);
           setClassificacao(data.classificacao);
@@ -124,33 +123,17 @@ function CadastroProduto() {
     <>
       <HeaderLogado />
       <Container>
-        <Colunas>
-          <Display>
-            <Coluna>
-              <span>Nome do produto</span>
-            </Coluna>
-            <Coluna>
-              <span>Classificação</span>
-            </Coluna>
-            <Coluna>
-              <span>Frete</span>
-            </Coluna>
-            <Coluna>
-              <span>Categoria</span>
-            </Coluna>
-          </Display>
-        </Colunas>
-
         {loading ? (
-          <div className="loading">
-            <p>Carregando...</p>
-          </div>
+          <ComponenteLoading>
+            <Loading>Carregando...</Loading>
+          </ComponenteLoading>
         ) : (
           <>
             {data === null || data.length === 0 ? (
-              <p className="nenhum-regis">Nenhum registro</p>
+              <ComponenteMensagem>Nenhum registro</ComponenteMensagem>
             ) : (
               data.map((item, index) => {
+                let imagem = "https://lh3.googleusercontent.com/pw/" + item.img;
                 return (
                   <ColVertical key={index}>
                     <Colunas>
@@ -162,24 +145,25 @@ function CadastroProduto() {
                           <label className="clas">{item.classificacao}</label>
                         </ColIteim>
                         <ColIteim>
-                          <span>
-                            {item.frete === 1
-                              ? "Frete incluso"
-                              : "Frete não incluso"}
-                          </span>
+                          {item.frete === 1
+                            ? <span className="formato" id="bgVerde">Frete incluso</span>
+                            : <span className="formato" id="bgVermelho">Frete não incluso</span>}
                         </ColIteim>
                         <ColIteim>
                           <label className="cat">
                             {item.id_categoria === 1 ? "Cozinha" : "Foda-se"}
                           </label>
                         </ColIteim>
+                        <ColDetalhes>
+                          <CiImport className="detalhes" />
+                        </ColDetalhes>
                       </ColsVert>
                     </Colunas>
 
                     <div id="info">
                       <ColsVert>
                         <Image>
-                          <img src={Prod} alt="Produto" />
+                          <img src={imagem} alt="img_produto" />
                         </Image>
                         <Info>
                           <Col>
