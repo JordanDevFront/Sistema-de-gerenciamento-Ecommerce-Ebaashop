@@ -1,0 +1,34 @@
+const teste = async () => {
+      try {
+        const response = await fetch('http://localhost:8080/list/pending/orders/', {
+          method: 'GET',
+          headers: {
+            "Content-Type": "application/json",
+            'Authorization': `Bearer ${localStorage.getItem('token')}`
+          },
+        });
+  
+        const data = await response.json();
+  
+        if(response.status === 200){
+          console.log("Dados do pedido:", data);
+        }
+  
+        if (response.status === 401) {
+          console.error('Autenticação falhada. Redirecionando para a página de login.');
+          Swal.fire({
+            title: "Seu token expirou!",
+            text: "Vamos te redirecionar para tela de login.",
+            icon: "error",
+          });
+          setTimeout(() => {
+            window.location = "/";
+          }, 5000);        
+          
+        } else if (!response.ok) {
+          throw new Error('Erro ao obter os dados');
+        }
+      } catch (error) {
+        console.error('Erro:', error.message);
+      }
+    };

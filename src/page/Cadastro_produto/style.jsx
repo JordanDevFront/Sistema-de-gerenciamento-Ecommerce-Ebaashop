@@ -61,23 +61,10 @@ export const ColIteim = styled.div`
     border-radius: 8px;
     color: #fff;
   }
-
-  #bgVerde {
-    background: #11cb54;
-  }
-  #bgVermelho {
-    background: red;
-  }
   label {
     border-radius: 8px;
     color: #fff;
     color: black;
-  }
-
-  .cat {
-    background: #b3b3b3;
-    color: white;
-    padding: 6px 20px;
   }
 
   #icon {
@@ -181,4 +168,24 @@ button{
     border-radius: 4px;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
 }
+`
+
+export const FreteIncluso = styled.span`
+  padding: 6px 20px;
+  border-radius: 8px;
+  color: #fff;
+  background: #11cb54;
+`;
+
+export const FreteNaoIncluso = styled.span`
+  padding: 6px 20px;
+  border-radius: 8px;
+  color: #fff;
+  background: red;
+`;
+
+export const Categoria = styled.label`
+background: #b3b3b3;
+    color: white;
+    padding: 6px 20px;
 `

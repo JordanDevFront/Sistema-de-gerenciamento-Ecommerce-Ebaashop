@@ -1,41 +1,27 @@
 import React, { useEffect, useState } from "react";
 import Swal from "sweetalert2"
-import { Container, ColVertical, ColsVert, ColIteim , ComponenteLoading, Loading, ComponenteMensagem, ColDetalhes, Image, Title, Info, Col, Preco, Descricao, Btns, ColBtn} from "./style";
-import { Coluna, Colunas } from "../../page/styleGlobalPage"
-import Prod from "../../imagens/prod.jpg"
+import { Container, ColVertical, ColsVert, ColIteim , ComponenteLoading, Loading, ComponenteMensagem, ColDetalhes, Image, Title, Info, Col, Preco, Descricao, Btns, ColBtn, FreteIncluso, FreteNaoIncluso, Categoria} from "./style";
+import { Colunas } from "../../page/styleGlobalPage"
 import { HeaderLogado } from "../../componentes/Header";
-import axios from "axios";
-
 import { CiImport } from "react-icons/ci";
 
 
 function CadastroProduto() {
-  const [nome_prod, setNome_prod] = useState("");//
-    const [descricao, setDescricao] = useState("");
-    const [classificacao, setClassificacao] = useState("");//
-    const [id_categoria, setId_categoria] = useState(null);//
-    const [preco, setPreco] = useState("");
-    const [qnt, setQnt] = useState(null);
-    const [desconto, setDesconto] = useState("");//
-    const [preco_desconto, setPreco_desconto] = useState("");//
-    const [qnt_parcelas, setQnt_parcelas] = useState(null);//
-    const [valor_parcela, setValor_parcela] = useState("");//
-    const [frete, setFrete] = useState(null);//
-    const [valor_frete, setValor_frete] = useState("");//
     const [data, setDados] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [URLIMAGE, seturlimage] = useState("https://lh3.googleusercontent.com/pw/")
+    const [nenhumRegistro, setnenhumRegistro] = useState("Nenhum registro")
 
 
     useEffect(() => {
       setTimeout(() => {
-        fetchData();
-        teste();
+        getListProduto();
       setLoading(false)
       }, 5000)
 
     }, []);
 
-    const fetchData = async () => {
+    const getListProduto = async () => {
       try {
         const response = await fetch('http://localhost:8080/lista/produtos', {
           method: 'GET',
@@ -48,55 +34,7 @@ function CadastroProduto() {
         const data = await response.json();
   
         if(response.status === 200){
-          
           setDados(data);
-          setNome_prod(data.nome_prod);
-          setDescricao(data.descricao);
-          setClassificacao(data.classificacao);
-          setId_categoria(data.id_categoria);
-          setPreco(data.preco);
-          setQnt(data.qnt);
-          setDesconto(data.desconto);
-          setPreco_desconto(data.preco_desconto);
-          setQnt_parcelas(data.qnt_parcelas);
-          setValor_parcela(data.valor_parcela);
-          setFrete(data.frete);
-          setValor_frete(data.valor_frete)
-        }
-  
-        if (response.status === 401) {
-          console.error('Autenticação falhada. Redirecionando para a página de login.');
-          Swal.fire({
-            title: "Seu token expirou!",
-            text: "Vamos te redirecionar para tela de login.",
-            icon: "error",
-          });
-          setTimeout(() => {
-            window.location = "/";
-          }, 5000);        
-          
-        } else if (!response.ok) {
-          throw new Error('Erro ao obter os dados');
-        }
-      } catch (error) {
-        console.error('Erro:', error.message);
-      }
-    };
-
-    const teste = async () => {
-      try {
-        const response = await fetch('http://localhost:8080/list/pending/orders/', {
-          method: 'GET',
-          headers: {
-            "Content-Type": "application/json",
-            'Authorization': `Bearer ${localStorage.getItem('token')}`
-          },
-        });
-  
-        const data = await response.json();
-  
-        if(response.status === 200){
-          console.log("Dados do pedido:", data);
         }
   
         if (response.status === 401) {
@@ -131,10 +69,10 @@ function CadastroProduto() {
         ) : (
           <>
             {data === null || data.length === 0 ? (
-              <ComponenteMensagem>Nenhum registro</ComponenteMensagem>
+              <ComponenteMensagem>{nenhumRegistro}</ComponenteMensagem>
             ) : (
               data.map((item, index) => {
-                let imagem = "https://lh3.googleusercontent.com/pw/" + item.img;
+                let imagem = URLIMAGE + item.img;
                 return (
                   <ColVertical key={index}>
                     <Colunas>
@@ -147,13 +85,13 @@ function CadastroProduto() {
                         </ColIteim>
                         <ColIteim>
                           {item.frete === 1
-                            ? <span className="formato" id="bgVerde">Frete incluso</span>
-                            : <span className="formato" id="bgVermelho">Frete não incluso</span>}
+                            ? <FreteIncluso>Frete incluso</FreteIncluso>
+                            : <FreteNaoIncluso>Frete não incluso</FreteNaoIncluso>}
                         </ColIteim>
                         <ColIteim>
-                          <label className="cat">
-                            {item.id_categoria === 1 ? "Cozinha" : "Foda-se"}
-                          </label>
+                          <Categoria>
+                            {item.id_categoria === 1 ? "Cozinha" : "Outros"}
+                          </Categoria>
                         </ColIteim>
                         <ColDetalhes>
                           <CiImport className="detalhes" />
